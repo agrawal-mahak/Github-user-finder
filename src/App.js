@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import './App.css'; // Make sure this file exists
 
 const GitHubUserFinder = () => {
-  const [username, setUsername] = useState('');
+  const [usernamee, setUsernamee] = useState('');
   const [user, setUser] = useState(null);
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const fetchUserData = async () => {
-    if (!username.trim()) return;
+    if (!usernamee.trim()) return;
     
     setLoading(true);
     setError(null);
     
     try {
-      const userResponse = await fetch(`https://api.github.com/users/${username}`);
+      const userResponse = await fetch(`https://api.github.com/users/${usernamee}`);
       if (!userResponse.ok) throw new Error('User not found');
       const userData = await userResponse.json();
       setUser(userData);
@@ -46,14 +46,14 @@ const GitHubUserFinder = () => {
           <input
             type="text"
             className="search-input"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={usernamee}
+            onChange={(e) => setUsernamee(e.target.value)}
             placeholder="Enter GitHub username..."
           />
           <button 
             className="search-button"
             type="submit" 
-            disabled={!username.trim() || loading}
+            disabled={!usernamee.trim() || loading}
           >
             {loading ? 'Searching...' : 'Search'}
           </button>
